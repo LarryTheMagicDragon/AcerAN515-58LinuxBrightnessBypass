@@ -1,0 +1,10 @@
+[Unit]
+Description=File Monitoring Service
+After=network.target
+
+[Service]
+ExecStart=/bin/bash /usr/local/bin/brightness_bypass_service.sh
+User=root
+
+[Install]
+WantedBy=default.target
