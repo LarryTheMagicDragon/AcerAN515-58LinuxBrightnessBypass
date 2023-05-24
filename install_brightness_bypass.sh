@@ -1,6 +1,6 @@
-#!bin/bash
+#!/bin/bash
 #I wrote this version while mostly awake, so it should work right out of the box on linux mint.
-sudo apt install inotify-tools
+sudo apt install inotify-tools -y
 
 sudo cp brightness_bypass.service /etc/systemd/system/brightness_bypass.service
 
