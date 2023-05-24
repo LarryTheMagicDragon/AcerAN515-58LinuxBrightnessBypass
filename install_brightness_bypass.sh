@@ -1,37 +1,17 @@
-!#bin/bash
-#I have written this and made it public, but I hevent tested it. I'm going to test it on LiveBoot media, and I need it accessible from the internet
+#!bin/bash
+#I wrote this version while mostly awake, so it should work right out of the box on linux mint.
 sudo apt install inotify-tools
 
-sudo touch /etc/systemd/system/brightness-hotfix.service
+sudo cp brightness_bypass.service /etc/systemd/system/brightness_bypass.service
 
-sudo chmod 744 /etc/systemd/system/brightness-hotfix.service
+sudo chmod 644 /etc/systemd/system/brightness_bypass.service
+sudo chwon root:root /etc/systemd/system/brightness_bypass.service
 
-sudo cat "[Unit]
-Description=File Monitoring Service
-After=network.target
+sudo cp brightness_bypass_service.sh /usr/local/bin/brightness_bypass_service.sh
 
-[Service]
-ExecStart=/bin/bash /usr/local/bin/backlight-hotfix.sh
-User=root
-
-[Install]
-WantedBy=default.target" > /etc/systemd/system/brightness-hotfix.service
-
-sudo chmod 644 /etc/systemd/system/brightness-hotfix.service
-
-sudo touch /usr/local/bin/backlight-hotfix.sh
-
-sudo chmod 744 /usr/local/bin/backlight-hotfix.sh
-
-sudo cat > "#!/bin/bash
-while inotifywait -e modify /sys/class/backlight/nvidia_wmi_ec_backlight/brightness; do
-    VALUE=$(cat /sys/class/backlight/nvidia_wmi_ec_backlight/brightness)
-    NEWVALUE=$(($VALUE * 75))
-    echo $NEWVALUE > /sys/class/backlight/intel_backlight/brightness
-done"
-
-sudo chmod 644 /usr/local/bin/backlight-hotfix.sh
+sudo chown root:root /usr/local/bin/brightness_bypass_service.sh
+sudo chmod 644 /usr/local/bin/brightness_bypass_service.sh
 
 sudo systemctl daemon-reload
-sudo systemctl enable brightness-hotfix.service
-sudo systemctl start file_monitor.service
+sudo systemctl enable brightness_bypass.service
+sudo systemctl start brightness_bypass.service
