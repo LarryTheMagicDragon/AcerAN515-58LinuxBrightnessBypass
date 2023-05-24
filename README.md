@@ -1,5 +1,6 @@
 # AcerAN515-58LinuxBrightnessBypass
 
+This will make the inbuilt brightness controls work. both the slider and the function keys
 I've tested this on a live boot usb, running Linux mint and it works right out of the box.
 
 all you need to do is download the files, and extract them. then run the commands
