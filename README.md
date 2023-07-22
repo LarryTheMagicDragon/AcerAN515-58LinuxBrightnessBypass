@@ -12,3 +12,5 @@ chmod 755 install_brightness_bypass.sh
 it will ask you for your password, like any script that uses sudo. After you enter you password and the script runs, you'll be able to use the built in brightness controls in Linux mint, and the function keys.
 
 Do note this will not work out of the box with Ubuntu. I tested.
+
+NOTE: This doesn't work with any kernel after 6.0. I plan to release a updated version soon. It should also work on any systemd system after the update.
